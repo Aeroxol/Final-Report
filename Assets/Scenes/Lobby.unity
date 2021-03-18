@@ -1006,7 +1006,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Option A
+  m_Text: Solo
 --- !u!222 &1216837222
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1408,11 +1408,11 @@ MonoBehaviour:
   m_Value: 0
   m_Options:
     m_Options:
-    - m_Text: Option A
+    - m_Text: Solo
       m_Image: {fileID: 21300000, guid: 9b2b2335a0be7c749a874ec66ff40f28, type: 3}
-    - m_Text: Option B
+    - m_Text: vs AI
       m_Image: {fileID: 21300000, guid: e69aba4f41bdc044ba921538f6f3bf9c, type: 3}
-    - m_Text: Option C
+    - m_Text: vs Player
       m_Image: {fileID: 21300000, guid: 220182651d4bff74db966de76a1d75a4, type: 3}
   m_OnValueChanged:
     m_PersistentCalls:
