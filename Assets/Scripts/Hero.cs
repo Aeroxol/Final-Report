@@ -5,13 +5,14 @@ using UnityEngine;
 public class Hero : MonoBehaviour
 {
     public Camera cam;
-    private Vector3 v = Vector3.zero;
-    private Vector3 a = Vector3.zero;
+    public Vector3 v = Vector3.zero;
+    public Vector3 a = Vector3.zero;
     public GameObject play_manager;
     public float move_speed = 5.0f;
     public bool flying = false;
     public StrikerUnit striker_unit;
     public Weapon main_weapon;
+    public Weapon sub_weapon;
     public float hp {
         set {
             Debug.Log(gameObject.name + " hp : " + value);
@@ -26,7 +27,6 @@ public class Hero : MonoBehaviour
     }
     public float max_hp;
     public float max_mp;
-    public float mass = 60;
 
     // Start is called before the first frame update
     void Start()
@@ -40,14 +40,32 @@ public class Hero : MonoBehaviour
         Move();
     }
 
+    private void Update()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            Fire();
+        }
+    }
+
     public void Initialize(float max_hp, float max_mp)
     {
         this.max_hp = max_hp;
         this.max_mp = max_mp;
     }
-    public void EquipStrikerUnit(StrikerUnit new_striker_unit)
+    public void SetStrikerUnit(StrikerUnit new_striker_unit)
     {
         this.striker_unit = new_striker_unit;
+    }
+
+    public void SetMainWeapon(Weapon main_weapon)
+    {
+        return;
+    }
+
+    public void SetSubWeapon(Weapon sub_weapon)
+    {
+        return;
     }
 
     public void Move()
@@ -77,6 +95,10 @@ public class Hero : MonoBehaviour
 
     public void Fire()
     {
-        Bullet new_bullet = Instantiate<Bullet>(main_weapon.bullet);
+        if (!main_weapon) { return; }
+        else
+        {
+            main_weapon.Fire();
+        }
     }
 }

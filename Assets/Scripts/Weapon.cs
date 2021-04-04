@@ -5,6 +5,8 @@ using UnityEngine;
 public class Weapon : MonoBehaviour
 {
     public Bullet bullet;
+    public float mass;
+    public float bullet_speed;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,13 +19,10 @@ public class Weapon : MonoBehaviour
         
     }
 
-    void Shoot()
+    public void Fire()
     {
-        Instantiate(bullet);
-        bullet.transform.SetParent(null);
-    }
-    void Reload()
-    {
-
+        Bullet new_bullet = Instantiate<Bullet>(bullet, null);
+        new_bullet.transform.position = gameObject.transform.position;
+        new_bullet.velocity = gameObject.transform.parent.GetComponent<Hero>().v+ (gameObject.transform.parent.GetComponent<Hero>().cam.ScreenToWorldPoint(Input.mousePosition) - gameObject.transform.parent.transform.position).normalized * bullet_speed;
     }
 }
