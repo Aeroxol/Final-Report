@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayManager : MonoBehaviour
 {
+    public float start_time;
     public TeamManager top_team;
     public TeamManager bot_team;
     public GameObject top_base;
@@ -11,7 +12,7 @@ public class PlayManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        start_time = Time.time;
     }
 
     // Update is called once per frame

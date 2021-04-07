@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
+    int team;
     public Vector3 velocity;
+    public float damage;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,8 +24,13 @@ public class Bullet : MonoBehaviour
         gameObject.transform.Translate(velocity * Time.deltaTime);
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        
+        Debug.Log(collision.gameObject.name);
+        Vitality target = collision.gameObject.GetComponent<Vitality>();
+        if (target != null)
+        {
+            target.Damage(damage);
+        }
     }
 }
