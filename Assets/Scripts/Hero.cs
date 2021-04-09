@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Hero : MonoBehaviour
 {
+    public GameObject map;
     public int team;
     public Camera cam;
     public Vector3 v = Vector3.zero;
@@ -74,6 +75,7 @@ public class Hero : MonoBehaviour
         }
         cam.orthographicSize = 20f + 5f * ((v.magnitude * Constants.AIR_RES) / striker_unit.power);
         cam.transform.position = gameObject.transform.position + Vector3.back * 10f + v.normalized * ((v.magnitude * Constants.AIR_RES) / striker_unit.power) * cam.orthographicSize;
+        
     }
 
     public void Fire()
@@ -82,6 +84,22 @@ public class Hero : MonoBehaviour
         else
         {
             main_weapon.Fire();
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if(collision.gameObject.name == "Ocean")
+        {
+            gameObject.transform.Translate(-v * Time.deltaTime*2);
+            v = -v;
+        }
+        if (!flying)
+        {
+            if(collision.gameObject.name == "Base")
+            {
+                gameObject.transform.Translate(-v * Time.deltaTime * 2);
+            }
         }
     }
 }
