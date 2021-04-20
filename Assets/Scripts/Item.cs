@@ -2,13 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerControl : MonoBehaviour
+public class Item : MonoBehaviour
 {
-    public float _x;
-    public float _y;
-    public float m_x;
-    public float m_y;
-    public Hero hero;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,7 +13,6 @@ public class PlayerControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        _x = Input.GetAxis("Horizontal");
-        _y = Input.GetAxis("Vertical");
+        
     }
 }

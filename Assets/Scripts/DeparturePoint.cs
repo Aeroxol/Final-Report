@@ -22,7 +22,8 @@ public class DeparturePoint : MonoBehaviour
         if (!hero) { return; }
         else
         {
-            hero.flying = true;
+            hero.is_flying = true;
+            Debug.Log("departure!");
         }
     }
 }

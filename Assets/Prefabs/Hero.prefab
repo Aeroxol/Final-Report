@@ -11,7 +11,10 @@ GameObject:
   - component: {fileID: 8078171405912692317}
   - component: {fileID: 8078171405912692314}
   - component: {fileID: 8078171405912692315}
+  - component: {fileID: 2020523361}
   - component: {fileID: 2228827212146191734}
+  - component: {fileID: 2020523357}
+  - component: {fileID: 2020523360}
   m_Layer: 0
   m_Name: Hero
   m_TagString: Untagged
@@ -71,7 +74,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 9b2b2335a0be7c749a874ec66ff40f28, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -99,6 +102,27 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!50 &2020523361
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8078171405912692312}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!114 &2228827212146191734
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -111,14 +135,41 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff17621ab9e72eb4f97342b8cfc51774, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  is_flying: 0
+  power: 0
+  direction: {x: 0, y: 0, z: 0}
+  velocity: {x: 0, y: 0, z: 0}
+  acceleration: {x: 0, y: 0, z: 0}
+  mass: 6
+  map: {fileID: 0}
   cam: {fileID: 0}
-  v: {x: 0, y: 0, z: 0}
-  a: {x: 0, y: 0, z: 0}
   play_manager: {fileID: 0}
-  move_speed: 5
-  flying: 0
+  move_speed: 3
   striker_unit: {fileID: 0}
-  main_weapon: {fileID: 0}
-  sub_weapon: {fileID: 0}
-  max_hp: 0
-  max_mp: 0
+  weapon: {fileID: 0}
+--- !u!114 &2020523357
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8078171405912692312}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07731a7dd563a704db948640e99c0f3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2020523360
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8078171405912692312}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb5ac77da5a94c54aa5f8f978ce6db28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hp: 100
+  mp: 100

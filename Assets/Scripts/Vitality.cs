@@ -10,14 +10,12 @@ public class Vitality : MonoBehaviour
     private float hp;
     [SerializeField]
     private float mp;
-
     public float HP
     {
         get { return hp; }
         set
         {
             hp = value;
-            Debug.Log(gameObject.name + " hp : " + hp);
         }
     }
     public float MP
@@ -26,16 +24,14 @@ public class Vitality : MonoBehaviour
         set
         {
             mp = value;
-            Debug.Log(gameObject.name + " mp : " + mp);
         }
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        SetMaxHpMp(100, 1000);
-    }
 
+    }
     // Update is called once per frame
     void Update()
     {
@@ -65,10 +61,14 @@ public class Vitality : MonoBehaviour
     public void Damage(float damage, bool initialize = true)
     {
         HP -= damage;
+        if(HP <= 0)
+        {
+            Die();
+        }
     }
 
     public void Die()
     {
-        Debug.Log(gameObject.name + " died");
+        gameObject.SetActive(false);
     }
 }

@@ -29,11 +29,13 @@ public class Shop : MonoBehaviour
         {
             shop = false;
             ShopPages.SetActive(true);
+            Status.SetActive(true);
         }
         else
         {
             shop = true;
             ShopPages.SetActive(false);
+            Status.SetActive(false);
         }
     }
 }

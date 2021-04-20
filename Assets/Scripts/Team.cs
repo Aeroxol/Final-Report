@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public class Team : MonoBehaviour
 {
-    public GameObject target;
-    public GameObject laser;
+    public TeamManager team;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,8 +17,8 @@ public class Enemy : MonoBehaviour
         
     }
 
-    public void Laser()
+    public void SetTeam(TeamManager _team)
     {
-
+        team = _team;
     }
 }

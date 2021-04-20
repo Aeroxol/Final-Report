@@ -2,11 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StrikerUnit : MonoBehaviour
+public class StrikerUnit : Item
 {
-    [SerializeField]
     public float power = 100;
-    [SerializeField]
     public float mass = 200;
     private float mana;
 

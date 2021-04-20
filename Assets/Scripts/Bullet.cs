@@ -4,19 +4,24 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    int team;
     public Vector3 velocity;
     public float damage;
+    public float start_time;
+    public float life_time;
     // Start is called before the first frame update
     void Start()
     {
-        
+        start_time = Time.time;
     }
 
     // Update is called once per frame
     void Update()
     {
         Move();
+        if(Time.time - start_time > life_time)
+        {
+            Destroy(gameObject);
+        }
     }
 
     public void Move()
@@ -26,11 +31,12 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log(collision.gameObject.name);
-        Vitality target = collision.gameObject.GetComponent<Vitality>();
-        if (target != null)
+        Vitality _target = collision.gameObject.GetComponent<Vitality>();
+        TeamManager _team = collision.gameObject.GetComponent<Team>().team;
+        if (_target != null && _team != gameObject.GetComponent<Team>().team)
         {
-            target.Damage(damage);
+            _target.Damage(damage);
+            Destroy(gameObject);
         }
     }
 }

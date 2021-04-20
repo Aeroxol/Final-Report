@@ -4,5 +4,5 @@ using UnityEngine;
 
 public class TeamManager
 {
-    List<Hero> top_members = new List<Hero>();
+    List<Team> members = new List<Team>();
 }
