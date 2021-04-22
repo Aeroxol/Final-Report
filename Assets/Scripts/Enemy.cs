@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class Enemy : MovingObject
 {
+    public AudioSource audio_source;
+    public SpriteRenderer sprite;
     public float speed;
+    public Weapon weapon;
     public GameObject main_target;
     public GameObject cur_target;
     public List<GameObject> target = new List<GameObject>();
-    public GameObject laser;
     public EnemyDetector enemy_detector;
     // Start is called before the first frame update
     void Start()
@@ -21,27 +23,31 @@ public class Enemy : MovingObject
     {
         Vector3 _direction = (cur_target.transform.position - gameObject.transform.position).normalized;
         SetDirection(_direction);
-    }
-
-    public void Laser()
-    {
+        if (target.Count != 0)
+        {
+            weapon.Fire(cur_target.transform.position);
+        }
+        sprite.transform.rotation = Quaternion.Euler(0, 0, Vector3.SignedAngle(Vector3.up, velocity, Vector3.forward));
 
     }
 
     public void UpdateTarget()
     {
-        if(target.Count == 0)
         {
-            cur_target = main_target;
-        }
-        else
-        {
-            cur_target = target[0];
+            if (target.Count == 0)
+            {
+                cur_target = main_target;
+            }
+            else
+            {
+                cur_target = target[0];
+            }
         }
     }
-
-    private void OnTriggerEnter2D(Collider2D collision)
+    public void Die()
     {
-         
+        PlayManager.score += 100;
+        audio_source.Play();
+        Destroy(gameObject);
     }
 }

@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 9167838495911137459}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.2, y: 0.2, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -48,7 +48,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   velocity: {x: 0, y: 0, z: 0}
   damage: 0
-  distance: 0
   start_time: 0
   life_time: 0
 --- !u!58 &9167838495911138124
@@ -66,7 +65,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.05
 --- !u!212 &6814314630875053632
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -106,7 +105,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 9b2b2335a0be7c749a874ec66ff40f28, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8522c8e74d08782439d56524a1bd2ecf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -129,3 +128,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07731a7dd563a704db948640e99c0f3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  team_num: 1

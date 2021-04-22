@@ -4,18 +4,20 @@ using UnityEngine;
 
 public class Hero : MovingObject
 {
+    public SpriteRenderer sprite;
     public GameObject map;
     public Camera cam;
     public PlayManager play_manager;
-    public float move_speed;
     public StrikerUnit striker_unit;
     public Weapon main_weapon;
+    public WeaponInfo weapon_info;
 
     // Start is called before the first frame update
     void Start()
     {
-        is_flying = false;
-        gameObject.GetComponent<Team>().team = play_manager.bot_team;
+        is_flying = true;
+        SetStrikerUnit(striker_unit);
+        SetMainWeapon(main_weapon);
     }
 
     // Update is called once per frame
@@ -27,10 +29,17 @@ public class Hero : MovingObject
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButton(0))
         {
             Fire();
         }
+        if (main_weapon)
+        {
+            weapon_info.SetText(main_weapon.cur_ammo + "/" + main_weapon.max_ammo);
+        }
+        Vector3 cam_p = cam.ScreenToWorldPoint(Input.mousePosition);
+        cam_p.z = 0;
+        sprite.transform.rotation = Quaternion.Euler(0, 0, Vector3.SignedAngle(Vector3.up, cam_p - gameObject.transform.position, Vector3.forward));
     }
 
     public void SetItem(Item new_item)
@@ -49,6 +58,7 @@ public class Hero : MovingObject
         {
             striker_unit.transform.SetParent(null);
             mass -= striker_unit.mass;
+            power -= striker_unit.power;
         }
         new_striker_unit.transform.SetParent(gameObject.transform);
         new_striker_unit.transform.position = gameObject.transform.position;
@@ -65,29 +75,29 @@ public class Hero : MovingObject
         }
         new_main_weapon.transform.SetParent(gameObject.transform);
         new_main_weapon.transform.position = gameObject.transform.position;
+        weapon_info.SetImage(new_main_weapon.icon);
         mass += new_main_weapon.mass;
         main_weapon = new_main_weapon;
-    }
+    }   
     public void Move()
     {
         float _x = Input.GetAxis("Horizontal");
         float _y = Input.GetAxis("Vertical");
         float x = _x * Mathf.Sqrt(1 - _y * _y / 2);
         float y = _y * Mathf.Sqrt(1 - _x * _x / 2);
+        SetDirection(new Vector3(x, y, 0));
 
         if (is_flying)
         {
             if (!striker_unit) { is_flying = false; }
             else
             {
-                SetDirection(new Vector3(x, y, 0));
-                cam.orthographicSize = 20f + 5f * (Constants.AIR_RES * velocity.magnitude / power);
-                cam.transform.position = gameObject.transform.position + Vector3.back * 10f;// + cam.orthographicSize * (Constants.AIR_RES * moving_object.velocity / moving_object.power);
+                cam.orthographicSize = 10f + 30f * (Constants.AIR_RES * velocity.magnitude / power);
+                cam.transform.position = gameObject.transform.position + Vector3.back * 10f + cam.orthographicSize * (Constants.AIR_RES * velocity / power);
             }
         }
         else
         {
-            gameObject.transform.Translate(new Vector3(x, y, 0) * move_speed * Time.deltaTime);
             cam.transform.position = gameObject.transform.position + Vector3.back * 10f ;
         }
 }
@@ -97,7 +107,14 @@ public class Hero : MovingObject
         if (!main_weapon) { return; }
         else
         {
-            main_weapon.Fire();
+            Vector3 cam_p = cam.ScreenToWorldPoint(Input.mousePosition);
+            cam_p.z = 0;
+            main_weapon.Fire(cam_p);
         }
-    }   
+    }
+
+    public void Die()
+    {
+        play_manager.EndGame();
+    }
 }

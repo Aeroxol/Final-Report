@@ -5,8 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class myUI:MonoBehaviour
 {
-    public Hero hero;
-    public StrikerUnit striker_unit;
      public void ToLobbyScene()
     {
         SceneManager.LoadScene("Lobby");
@@ -19,11 +17,11 @@ public class myUI:MonoBehaviour
 
     public void ToReadyScene()
     {
-        SceneManager.LoadScene("Ready");
+        //SceneManager.LoadScene("Ready");
     }
 
-    public void Testasdfasdf()
+    public void ToPlayScene()
     {
-        hero.SetStrikerUnit(striker_unit);
+        SceneManager.LoadScene("Play");
     }
 }

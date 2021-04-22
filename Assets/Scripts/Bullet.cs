@@ -32,11 +32,15 @@ public class Bullet : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         Vitality _target = collision.gameObject.GetComponent<Vitality>();
-        TeamManager _team = collision.gameObject.GetComponent<Team>().team;
-        if (_target != null && _team != gameObject.GetComponent<Team>().team)
+        Team _team = collision.gameObject.GetComponent<Team>();
+        if (_team && _target)
         {
-            _target.Damage(damage);
-            Destroy(gameObject);
+            Team.TeamNumber _team_num = collision.gameObject.GetComponent<Team>().team_num;
+            if (_team_num != gameObject.GetComponent<Team>().team_num)
+            {
+                _target.Damage(damage);
+                Destroy(gameObject);
+            }
         }
     }
 }

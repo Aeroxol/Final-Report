@@ -2,12 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 
 public class PlayManager : MonoBehaviour
 {
     public float start_time;
+    public static int score;
     public Text timer;
+    public GameObject score_board;
+    public Text score_text;
+    public GameObject player;
     public TeamManager top_team;
     public TeamManager bot_team;
     public GameObject top_base;
@@ -28,6 +33,14 @@ public class PlayManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        timer.text = (Time.time -  start_time).ToString();
+        timer.text = "Score: " + score;
+    }
+
+    public void EndGame()
+    {
+        Time.timeScale = 0;
+        score_board.SetActive(true);
+        score_text.text = "Your Score\n" + score;
+        //SceneManager.LoadScene("Lobby");
     }
 }

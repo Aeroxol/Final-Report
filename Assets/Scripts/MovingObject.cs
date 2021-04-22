@@ -6,6 +6,7 @@ public class MovingObject : MonoBehaviour
 {
     public bool is_flying;
     public float power;
+    public float move_speed;
     public Vector3 direction;
     public Vector3 velocity;
     public Vector3 acceleration;
@@ -31,8 +32,12 @@ public class MovingObject : MonoBehaviour
         {
             acceleration = (power * direction - Constants.AIR_RES * velocity) / mass;
             velocity = velocity + acceleration * Time.deltaTime;
-            gameObject.transform.Translate(velocity * Time.deltaTime);
+        }else if (!is_flying)
+        {
+            velocity = move_speed * direction;
         }
+        gameObject.transform.Translate(velocity * Time.deltaTime);
+
     }
 
     public void SetDirection(Vector3 vec3)
@@ -43,8 +48,9 @@ public class MovingObject : MonoBehaviour
     {
         if (collision.gameObject.name == "Ocean")
         {
-            gameObject.transform.Translate(-velocity * Time.deltaTime * 2);
-            velocity = -velocity;
+            //gameObject.transform.Translate(-velocity * Time.deltaTime * 2);
+            //velocity = -velocity;
+            gameObject.transform.position = gameObject.transform.position * -1;
         }
 
     }

@@ -4,7 +4,14 @@ using UnityEngine;
 
 public class Team : MonoBehaviour
 {
-    public TeamManager team;
+    public enum TeamNumber
+    {
+        top_team,
+        bot_team,
+        hostile_team,
+        newtral_team,
+    }
+    public TeamNumber team_num;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,8 +24,8 @@ public class Team : MonoBehaviour
         
     }
 
-    public void SetTeam(TeamManager _team)
+    public void SetTeam(TeamNumber _team)
     {
-        team = _team;
+        team_num = _team;
     }
 }

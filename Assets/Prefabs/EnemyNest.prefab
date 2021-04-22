@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 9121881943738150243}
   - component: {fileID: 7971194972786178981}
   - component: {fileID: 8170760557619859669}
+  - component: {fileID: -5800791608319518353}
   m_Layer: 0
   m_Name: EnemyNest
   m_TagString: Untagged
@@ -94,3 +95,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1933033b4b47ce443b8cdfa236293e11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  play_manager: {fileID: 0}
+  enemy: {fileID: 39154084503164135, guid: 9fe8a50eb09f47445a275134c54bab5b, type: 3}
+--- !u!114 &-5800791608319518353
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 596073858739277966}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07731a7dd563a704db948640e99c0f3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  team_num: 2

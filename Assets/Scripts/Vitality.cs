@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class Vitality : MonoBehaviour
 {
-    private float max_hp;
-    private float max_mp;
+    public HPbar hp_bar;
+    public float max_hp;
+    public float max_mp;
     [SerializeField]
     private float hp;
     [SerializeField]
@@ -15,6 +16,10 @@ public class Vitality : MonoBehaviour
         get { return hp; }
         set
         {
+            if (hp_bar)
+            {
+                hp_bar.SetHealth(value);
+            }
             hp = value;
         }
     }
@@ -30,7 +35,7 @@ public class Vitality : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        SetMaxHp(max_hp);
     }
     // Update is called once per frame
     void Update()
@@ -50,6 +55,10 @@ public class Vitality : MonoBehaviour
     }
     public void SetMaxHp(float _max_hp, bool initialize = true)
     {
+        if (hp_bar)
+        {
+            hp_bar.SetMaxHealth(_max_hp);
+        }
         max_hp = _max_hp;
         if (initialize) { HP = max_hp; }
     }
@@ -69,6 +78,12 @@ public class Vitality : MonoBehaviour
 
     public void Die()
     {
-        gameObject.SetActive(false);
+        if (gameObject.GetComponent<Enemy>())
+        {
+            gameObject.gameObject.GetComponent<Enemy>().Die();
+        }else if (gameObject.GetComponent<Hero>())
+        {
+            gameObject.GetComponent<Hero>().Die();
+        }
     }
 }
