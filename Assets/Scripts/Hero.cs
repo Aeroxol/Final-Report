@@ -58,7 +58,6 @@ public class Hero : MovingObject
         {
             striker_unit.transform.SetParent(null);
             mass -= striker_unit.mass;
-            power -= striker_unit.power;
         }
         new_striker_unit.transform.SetParent(gameObject.transform);
         new_striker_unit.transform.position = gameObject.transform.position;
@@ -92,8 +91,11 @@ public class Hero : MovingObject
             if (!striker_unit) { is_flying = false; }
             else
             {
-                cam.orthographicSize = 10f + 30f * (Constants.AIR_RES * velocity.magnitude / power);
-                cam.transform.position = gameObject.transform.position + Vector3.back * 10f + cam.orthographicSize * (Constants.AIR_RES * velocity / power);
+                cam.orthographicSize = 20f + 20f * (Constants.AIR_RES * velocity.magnitude / power);
+                Vector3 pos = gameObject.transform.position + Vector3.back * 10f + cam.orthographicSize * (Constants.AIR_RES * velocity / power);
+                pos.x = Mathf.Clamp(pos.x, -99 + cam.orthographicSize * cam.aspect, 99 - cam.orthographicSize * cam.aspect);
+                pos.y = Mathf.Clamp(pos.y, -99 + cam.orthographicSize, 99 - cam.orthographicSize);
+                cam.transform.position = pos;
             }
         }
         else

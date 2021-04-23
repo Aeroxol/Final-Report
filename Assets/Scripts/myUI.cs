@@ -7,6 +7,7 @@ public class myUI:MonoBehaviour
 {
      public void ToLobbyScene()
     {
+        Debug.Log("ToLobbyScene");
         SceneManager.LoadScene("Lobby");
     }
 
@@ -22,6 +23,19 @@ public class myUI:MonoBehaviour
 
     public void ToPlayScene()
     {
+        Debug.Log("ToPlayScene");
         SceneManager.LoadScene("Play");
+    }
+
+    public void QuitGame()
+    {
+        Debug.Log("QuitGame");
+        Application.Quit();
+    }
+
+    public void Resume()
+    {
+        gameObject.SetActive(false);
+        Time.timeScale = 1;
     }
 }

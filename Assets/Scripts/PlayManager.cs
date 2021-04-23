@@ -10,6 +10,7 @@ public class PlayManager : MonoBehaviour
     public float start_time;
     public static int score;
     public Text timer;
+    public GameObject paused;
     public GameObject score_board;
     public Text score_text;
     public GameObject player;
@@ -34,6 +35,11 @@ public class PlayManager : MonoBehaviour
     void Update()
     {
         timer.text = "Score: " + score;
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Time.timeScale = 0;
+            paused.SetActive(true);
+        }
     }
 
     public void EndGame()

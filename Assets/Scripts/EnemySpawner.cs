@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
+    public int set_hp;
     public PlayManager play_manager;
     public Enemy enemy;
     private float next_spawn_time;
@@ -27,11 +28,13 @@ public class EnemySpawner : MonoBehaviour
     {
         //Debug.Log("Spawn Enemy!!");
         //first
-        Vector3 random_vector = Quaternion.AngleAxis(Random.Range(-180, 180), Vector3.back) * Vector3.up * 240;
+        Vector3 random_vector = Quaternion.AngleAxis(Random.Range(-180, 180), Vector3.back) * Vector3.up * 141;
         Enemy new_enemy = GameObject.Instantiate<Enemy>(enemy, random_vector, new Quaternion(0,0,0,0));
         new_enemy.GetComponent<Team>().team_num = Team.TeamNumber.hostile_team;
         new_enemy.main_target = play_manager.player;
         new_enemy.gameObject.GetComponent<MovingObject>().is_flying = true;
+        new_enemy.gameObject.GetComponent<Vitality>().SetMaxHp(set_hp);
+        set_hp += 5;
         //second
         /*
         new_enemy = GameObject.Instantiate<Enemy>(enemy, gameObject.transform);

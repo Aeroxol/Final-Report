@@ -95,6 +95,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1933033b4b47ce443b8cdfa236293e11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  set_hp: 15
   play_manager: {fileID: 0}
   enemy: {fileID: 39154084503164135, guid: 9fe8a50eb09f47445a275134c54bab5b, type: 3}
 --- !u!114 &-5800791608319518353

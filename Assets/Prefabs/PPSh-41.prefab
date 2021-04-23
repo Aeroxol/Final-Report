@@ -48,8 +48,8 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: f21793108e03a50469ada7fc19f26b6e, type: 3}
   bullet: {fileID: 9167838495911138125, guid: d663635276f72ee4fb7c70202c11f2eb, type: 3}
   mass: 0.3
-  bullet_speed: 60
-  damage: 5
+  bullet_speed: 40
+  damage: 3
   distance: 40
   interval: 0.06
   reload: 1.2

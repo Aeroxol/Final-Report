@@ -43,5 +43,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efa8c52906c3c784f94fd9df70994a50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  power: 15
+  power: 10
   mass: 1.2
